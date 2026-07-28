@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'imagekit',
     'solo',
     'tinymce',
+    'ckeditor',
 
     # Tailwind theme app
     'theme',

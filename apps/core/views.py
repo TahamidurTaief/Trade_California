@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from apps.products.models import Product
 from apps.services.models import ServiceType
-from apps.core.models import Mentor, CompanyValue, WhyChooseUsItem, HomePageSettings
+from apps.core.models import CompanyValue, WhyChooseUsItem, HomePageSettings, TeamMember
 
 def home(request):
     featured_products_list = Product.objects.all().order_by('order')
@@ -22,11 +22,11 @@ def home(request):
     })
 
 def about(request):
-    mentors = Mentor.objects.filter(is_active=True).order_by('order')
     values = CompanyValue.objects.filter(is_active=True).order_by('order')
+    team_members = TeamMember.objects.filter(is_active=True).order_by('order')
     return render(request, "core/about.html", {
-        "mentors": mentors,
-        "values": values
+        "values": values,
+        "team_members": team_members
     })
 
 from django.http import HttpResponseRedirect
@@ -72,7 +72,6 @@ def ai_chat(request):
             # ── Fetch all context data ──────────────────────────────────────────
             products  = Product.objects.all()
             services  = ServiceType.objects.all()
-            mentors   = Mentor.objects.filter(is_active=True).order_by('order')
 
             # Try to get about page info
             try:
@@ -83,11 +82,6 @@ def ai_chat(request):
                 about = None
                 site  = None
 
-            # ── Detect intent: mentors ──────────────────────────────────────────
-            mentor_keywords = ['mentor', 'team', 'expert', 'founder', 'who are', 'staff',
-                               'মেন্টর', 'টিম', 'দল', 'কে কে', 'kara ache', 'ke ke',
-                               'manush', 'lok', 'member', 'লোক', 'মানুষ']
-            is_mentor_query = any(w in lower_msg for w in mentor_keywords)
 
             # ── Detect intent: about ────────────────────────────────────────────
             about_keywords = ['about', 'company', 'mission', 'vision', 'who you', 'what is',
@@ -109,9 +103,7 @@ def ai_chat(request):
 
             service_details = [f"- {s.title}: {s.short_description[:120]}" for s in services]
 
-            mentor_text_list = []
-            for m in mentors:
-                mentor_text_list.append(f"- {m.name} ({m.role}): {m.bio[:120]}")
+
 
             about_text = ""
             if site:
@@ -134,21 +126,7 @@ def ai_chat(request):
 
             product_text  = "\n".join(product_details) or "None listed"
             service_text  = "\n".join(service_details)  or "None listed"
-            mentor_text   = "\n".join(mentor_text_list)  or "None listed"
 
-            # ── If mentor query → return rich card data directly ───────────────
-            if is_mentor_query and mentors.exists():
-                mentor_cards = []
-                for m in mentors:
-                    card = {
-                        'name':       m.name,
-                        'role':       m.role,
-                        'bio':        m.bio,
-                        'linkedin':   m.linkedin_url or '',
-                        'photo':      request.build_absolute_uri(m.photo.url) if m.photo else '',
-                    }
-                    mentor_cards.append(card)
-                return JsonResponse({'response': None, 'cards': mentor_cards, 'card_type': 'mentor'})
 
             # ── System prompt for Gemini ───────────────────────────────────────
             system_prompt = f"""You are a precise AI assistant for Trade California — a premium international trade & business platform.
@@ -159,9 +137,6 @@ Products:
 
 Services:
 {service_text}
-
-Mentors/Team:
-{mentor_text}
 
 Company Info:
 {about_text}

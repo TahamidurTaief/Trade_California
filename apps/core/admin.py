@@ -1,8 +1,10 @@
 from django.contrib import admin
+from django import forms
+from ckeditor.widgets import CKEditorWidget
 from unfold.admin import ModelAdmin
 from solo.admin import SingletonModelAdmin
 from .models import (
-    SiteSettings, NavigationLink, FooterLink, CompanyValue, Mentor,
+    SiteSettings, NavigationLink, FooterLink, CompanyValue, TeamMember,
     NewsletterSubscriber, HomePageSettings, AboutPageSettings,
     ProductsPageSettings, ServicesPageSettings, ContactPageSettings,
     RegistrationPageSettings, WhyChooseUsItem
@@ -114,8 +116,16 @@ class CompanyValueAdmin(ModelAdmin):
     list_editable = ['order', 'is_active']
     search_fields = ['title']
 
-@admin.register(Mentor)
-class MentorAdmin(ModelAdmin):
+class TeamMemberForm(forms.ModelForm):
+    bio = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = TeamMember
+        fields = '__all__'
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(ModelAdmin):
+    form = TeamMemberForm
     list_display = ['name', 'role', 'order', 'is_active']
     list_editable = ['order', 'is_active']
     search_fields = ['name', 'role']
+

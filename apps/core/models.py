@@ -1,6 +1,7 @@
 from django.db import models
 from solo.models import SingletonModel
 from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 
 class SiteSettings(SingletonModel):
     site_name = models.CharField(max_length=255, default="Trade California International")
@@ -40,11 +41,11 @@ class CompanyValue(models.Model):
     def __str__(self):
         return self.title
 
-class Mentor(models.Model):
+class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
-    bio = models.TextField()
-    photo = models.ImageField(upload_to='mentors/', blank=True, null=True)
+    bio = RichTextField()
+    photo = models.ImageField(upload_to='team/', blank=True, null=True)
     linkedin_url = models.URLField(blank=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)

@@ -50,9 +50,6 @@ class WhyChooseUsItemAdmin(ModelAdmin):
 @admin.register(AboutPageSettings)
 class AboutPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
-        ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
-        }),
         ('Content Section', {
             'fields': ('mission_statement', 'vision_statement')
         }),

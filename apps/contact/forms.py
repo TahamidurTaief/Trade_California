@@ -8,7 +8,9 @@ class ContactForm(forms.ModelForm):
         model = ContactMessage
         fields = ["name", "phone", "message"]
         widgets = {
-            'message': forms.Textarea(attrs={'rows': 5}),
+            'name': forms.TextInput(attrs={'placeholder': 'e.g. John Doe'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'e.g. +1 234 567 8900'}),
+            'message': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Write your message here...'}),
         }
 
     def __init__(self, *args, **kwargs):

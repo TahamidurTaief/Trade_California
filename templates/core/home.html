@@ -2,15 +2,14 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative bg-slate-900 text-white overflow-hidden">
+<section class="relative bg-white text-slate-900 overflow-hidden">
     {% if home_settings.hero_background %}
-    <div class="absolute inset-0 z-0">
-        <img src="{{ home_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-cover object-top"
-            style="opacity: {{ home_settings.hero_opacity_percentage|default:30 }}%;">
+    <div class="absolute inset-0 z-0 flex items-center justify-center">
+        <img src="{{ home_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-contain object-center">
     </div>
     {% endif %}
     <div
-        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 lg:py-48 flex flex-col items-center justify-center text-center min-h-[65vh]">
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 lg:py-48 flex flex-col items-center justify-center text-center min-h-[85vh]">
         {% if home_settings.hero_headline %}
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" data-aos="fade-down">{{ home_settings.hero_headline
             }}</h1>
@@ -206,37 +205,53 @@
 
 
 
-<!-- Why Trade California Section -->
-{% if why_choose_us_items %}
-<section class="pt-8 pb-16 bg-white border-t border-slate-100">
+<!-- About Trade California Section -->
+{% if home_page_settings.about_section_title or home_page_settings.about_section_content %}
+<section class="py-12 lg:py-16 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center" data-aos="fade-up">
-            <span
-                class="inline-block py-1 px-3 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-sm font-semibold tracking-wide uppercase mb-3">FAQ</span>
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-10">{{ home_settings.why_choose_us_headline }}
+        <div class="mb-8 md:mb-10" data-aos="fade-up">
+            {% if home_page_settings.about_section_badge_text %}
+            <div class="mb-4">
+                <div class="inline-block bg-indigo-50/80 border border-indigo-100 rounded-full py-1 px-4">
+                    <span class="text-indigo-600 font-bold tracking-widest uppercase text-[11px]">{{ home_page_settings.about_section_badge_text }}</span>
+                </div>
+            </div>
+            {% endif %}
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">
+                {{ home_page_settings.about_section_title }}
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-slate-700 text-[15px] md:text-base leading-relaxed max-w-4xl about-section-content" data-aos="fade-up" data-aos-delay="100">
+            {{ home_page_settings.about_section_content|safe }}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Why Trade California Section -->
+{% if why_choose_us_items %}
+<section class="py-12 lg:py-16 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 md:mb-10" data-aos="fade-up">
+            {% if home_page_settings.why_choose_us_badge_text %}
+            <div class="mb-4">
+                <div class="inline-block bg-indigo-50/80 border border-indigo-100 rounded-full py-1 px-4">
+                    <span class="text-indigo-600 font-bold tracking-widest uppercase text-[11px]">{{ home_page_settings.why_choose_us_badge_text }}</span>
+                </div>
+            </div>
+            {% endif %}
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">
+                {% if home_page_settings.why_choose_us_headline %}{{ home_page_settings.why_choose_us_headline }}{% else %}Why Trade California?{% endif %}
+            </h2>
+        </div>
+
+        <div class="flex flex-col" data-aos="fade-up" data-aos-delay="100">
             {% for item in why_choose_us_items %}
-            <div
-                class="faq-item border border-slate-200 rounded-xl bg-white shadow-sm hover:border-indigo-300 hover:shadow-md transition-all duration-300">
-                <button
-                    class="w-full flex justify-between items-center font-bold p-5 text-slate-900 text-sm md:text-base text-left faq-btn focus:outline-none rounded-xl cursor-pointer">
-                    <span>{{ item.title }}</span>
-                    <span class="transition-transform duration-500 text-indigo-500 faq-icon flex-shrink-0 ml-4">
-                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </span>
-                </button>
-                <div class="faq-content grid transition-all duration-500 ease-in-out" style="grid-template-rows: 0fr;">
-                    <div class="overflow-hidden">
-                        <div class="text-slate-600 p-5 pt-0 text-sm leading-relaxed border-t border-slate-100 mt-2">
-                            {{ item.description|linebreaksbr }}
-                        </div>
-                    </div>
+            <div class="mb-8 md:mb-10 last:mb-0">
+                <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{{ item.title }}</h3>
+                <div class="text-slate-600 text-[15px] md:text-base leading-relaxed">
+                    {{ item.description|linebreaksbr }}
                 </div>
             </div>
             {% endfor %}
@@ -244,40 +259,5 @@
     </div>
 </section>
 {% endif %}
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const faqs = document.querySelectorAll('.faq-item');
-        faqs.forEach(item => {
-            const btn = item.querySelector('.faq-btn');
-            const content = item.querySelector('.faq-content');
-            const icon = item.querySelector('.faq-icon');
-
-            btn.addEventListener('click', () => {
-                const isOpen = content.style.gridTemplateRows === '1fr';
-
-                // Close all others
-                faqs.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.querySelector('.faq-content').style.gridTemplateRows = '0fr';
-                        otherItem.querySelector('.faq-icon').classList.remove('rotate-180');
-                        otherItem.classList.remove('border-indigo-300', 'ring-1', 'ring-indigo-100');
-                    }
-                });
-
-                // Toggle current
-                if (isOpen) {
-                    content.style.gridTemplateRows = '0fr';
-                    icon.classList.remove('rotate-180');
-                    item.classList.remove('border-indigo-300', 'ring-1', 'ring-indigo-100');
-                } else {
-                    content.style.gridTemplateRows = '1fr';
-                    icon.classList.add('rotate-180');
-                    item.classList.add('border-indigo-300', 'ring-1', 'ring-indigo-100');
-                }
-            });
-        });
-    });
-</script>
 
 {% endblock %}

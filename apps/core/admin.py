@@ -31,7 +31,7 @@ class SiteSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 class HomePageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_opacity_percentage', 'hero_cta_text', 'hero_cta_link')
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_cta_text', 'hero_cta_link')
         }),
         ('Overview Section', {
             'fields': ('overview_badge_text', 'overview_image', 'overview_title', 'overview_tagline', 'overview_content')
@@ -51,7 +51,7 @@ class WhyChooseUsItemAdmin(ModelAdmin):
 class AboutPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_opacity_percentage')
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
         }),
         ('Content Section', {
             'fields': ('mission_statement', 'vision_statement')
@@ -65,7 +65,7 @@ class AboutPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 class ProductsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_opacity_percentage')
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
         }),
     )
 
@@ -73,7 +73,7 @@ class ProductsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 class ServicesPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_opacity_percentage')
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
         }),
     )
 
@@ -81,7 +81,7 @@ class ServicesPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 class ContactPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_opacity_percentage')
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
         }),
     )
 
@@ -89,7 +89,7 @@ class ContactPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 class RegistrationPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
         ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background', 'hero_opacity_percentage')
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
         }),
     )
 

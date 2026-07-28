@@ -49,17 +49,8 @@
                 </div>
             </div>
 
-            <!-- Right Side: All Text (Badge, Title, Tagline, Content) -->
+            <!-- Right Side: All Text (Title, Tagline, Content) -->
             <div class="md:w-8/12 flex flex-col" data-aos="fade-left" data-aos-delay="100">
-                
-                <!-- Badge -->
-                {% if home_page_settings.overview_badge_text %}
-                <div class="mb-5">
-                    <div class="inline-block bg-indigo-50/80 border border-indigo-100 rounded-full py-1.5 px-5">
-                        <span class="text-indigo-600 font-bold tracking-widest uppercase text-[11px]">{{ home_page_settings.overview_badge_text }}</span>
-                    </div>
-                </div>
-                {% endif %}
 
                 <h2 class="text-3xl lg:text-4xl xl:text-[42px] font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
                     {% if home_page_settings.overview_title %}
@@ -105,13 +96,6 @@
 <!-- Featured Products -->
 <section id="featured-products" class="py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Badge -->
-        <div class="flex justify-center mb-4" data-aos="fade-up">
-            <div class="inline-block bg-indigo-50/80 border border-indigo-100 rounded-full py-1.5 px-5">
-                <span class="text-indigo-600 font-bold tracking-widest uppercase text-[11px]">OUR CATALOG</span>
-            </div>
-        </div>
 
         <h2 class="text-3xl font-bold mb-8 text-center text-slate-900" data-aos="fade-up">Featured Products</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -210,13 +194,6 @@
 <section class="py-12 lg:py-16 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-8 md:mb-10" data-aos="fade-up">
-            {% if home_page_settings.about_section_badge_text %}
-            <div class="mb-4">
-                <div class="inline-block bg-indigo-50/80 border border-indigo-100 rounded-full py-1 px-4">
-                    <span class="text-indigo-600 font-bold tracking-widest uppercase text-[11px]">{{ home_page_settings.about_section_badge_text }}</span>
-                </div>
-            </div>
-            {% endif %}
             <h2 class="text-3xl md:text-4xl font-bold text-slate-900">
                 {{ home_page_settings.about_section_title }}
             </h2>
@@ -234,13 +211,6 @@
 <section class="py-12 lg:py-16 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-8 md:mb-10" data-aos="fade-up">
-            {% if home_page_settings.why_choose_us_badge_text %}
-            <div class="mb-4">
-                <div class="inline-block bg-indigo-50/80 border border-indigo-100 rounded-full py-1 px-4">
-                    <span class="text-indigo-600 font-bold tracking-widest uppercase text-[11px]">{{ home_page_settings.why_choose_us_badge_text }}</span>
-                </div>
-            </div>
-            {% endif %}
             <h2 class="text-3xl md:text-4xl font-bold text-slate-900">
                 {% if home_page_settings.why_choose_us_headline %}{{ home_page_settings.why_choose_us_headline }}{% else %}Why Trade California?{% endif %}
             </h2>

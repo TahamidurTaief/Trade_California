@@ -20,9 +20,6 @@
     </div>
     {% endif %}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <span
-            class="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold uppercase tracking-widest mb-4"
-            data-aos="fade-down">About Us</span>
         {% if about_settings.hero_headline %}
         <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight text-white" data-aos="fade-up"
             data-aos-delay="100">
@@ -38,69 +35,19 @@
     </div>
 </section>
 
-<!-- Company Values / Information Section -->
-{% if values %}
-<section class="pt-20 pb-8 lg:pt-24 lg:pb-12 bg-white relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-8" data-aos="fade-up">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-indigo-50 text-indigo-600 font-bold tracking-wider uppercase text-xs mb-4 border border-indigo-100">Our Values</span>
-            <h2 class="text-2xl font-bold text-slate-900 mb-3 tracking-tight">Our Core Values</h2>
-            <p class="text-sm text-slate-600">{{ about_settings.vision_statement }}</p>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {% for value in values %}
-            <div class="relative bg-white rounded-xl p-6 border border-slate-100 hover:border-blue-900 shadow-sm hover:shadow-md transition-all duration-500 group overflow-hidden"
-                data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'1' }}00">
-                <!-- Hover Gradient Background -->
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                </div>
-
-                <div class="relative z-10">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 border-2 border-transparent group-hover:border-indigo-900 group-hover:bg-indigo-600 group-hover:shadow-lg transition-all duration-700 group-hover:scale-110">
-                            <!-- Icon placeholder / Render SVG string if provided -->
-                            {% if value.icon %}
-                            <svg class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-500"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                    d="{{ value.icon }}"></path>
-                            </svg>
-                            {% else %}
-                            <svg class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-500"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            {% endif %}
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-900 transition-colors">{{ value.title }}</h3>
-                    </div>
-                    <p class="text-sm text-slate-600 leading-relaxed">{{ value.description }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% endif %}
 <!-- Team Member Section -->
 {% if team_members %}
 <section class="pt-16 pb-20 lg:pt-24 lg:pb-24 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-indigo-100 text-indigo-700 font-bold tracking-wider uppercase text-xs mb-4 border border-indigo-200">Our Leadership</span>
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Meet Our Founder</h2>
             <p class="text-lg text-slate-600">The visionary behind Trade California.</p>
         </div>
 
         <div class="space-y-16 lg:space-y-24">
             {% for member in team_members %}
-            <div class="flex flex-col {% if forloop.counter|divisibleby:2 %} lg:flex-row-reverse {% else %} lg:flex-row {% endif %} items-center gap-8 lg:gap-16" data-aos="fade-up">
+            <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-16" data-aos="fade-up">
                 <!-- Image Side -->
                 <div class="w-full lg:w-1/3">
                     <div class="relative rounded-2xl overflow-hidden shadow-xl group">

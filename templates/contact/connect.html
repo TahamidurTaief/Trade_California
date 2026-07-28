@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}{{ title }} | {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<style>
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .delay-200 { animation-delay: 200ms; }
+</style>
+
+<section
+    class="relative pt-20 pb-16 lg:pt-28 lg:pb-24 overflow-hidden bg-slate-900 text-white border-b border-slate-800">
+    {% if contact_settings.hero_background %}
+    <div class="absolute inset-0 z-0">
+        <img src="{{ contact_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-cover"
+            loading="lazy" />
+        <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px]"></div>
+    </div>
+    {% else %}
+    <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/40 via-slate-900 to-slate-900">
+    </div>
+    {% endif %}
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center opacity-0 animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 shadow-xl backdrop-blur-md">
+            <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span class="text-xs font-semibold tracking-widest text-blue-300 uppercase">Connect With Us</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-white drop-shadow-md">
+            {{ title }}
+        </h1>
+        <p class="text-base md:text-lg text-slate-300 max-w-2xl mx-auto font-medium">
+            Please fill out the form below with your details. We look forward to connecting with you.
+        </p>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 opacity-0 animate-fade-in-up delay-200">
+        <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-slate-300">
+            <div class="p-8 md:p-12">
+                <form method="POST" action="{% url 'connect' role %}" class="space-y-6">
+                    {% csrf_token %}
+                    
+                    {% if role == 'buyer' %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Name / Company <span class="text-red-500">*</span></label>
+                                <input type="text" name="name_company" placeholder="Enter your name or company" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Country <span class="text-red-500">*</span></label>
+                                <input type="text" name="country" placeholder="Enter your country" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Industry</label>
+                                <input type="text" name="industry" placeholder="e.g. Electronics, Agriculture" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Product Required <span class="text-red-500">*</span></label>
+                                <input type="text" name="product_required" placeholder="e.g. Solar Panels, Rice" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Quantity</label>
+                                <input type="text" name="quantity" placeholder="e.g. 1000 units" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Delivery Location</label>
+                                <input type="text" name="delivery_location" placeholder="e.g. Port of Los Angeles" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Product Specifications</label>
+                                <textarea name="product_specifications" placeholder="Describe the specific features and requirements..." rows="3" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Purchase Timeline</label>
+                                <input type="text" name="purchase_timeline" placeholder="e.g. Immediately, 1-3 months" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                        </div>
+                    {% elif role == 'supplier' %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Company Name <span class="text-red-500">*</span></label>
+                                <input type="text" name="company_name" placeholder="Enter your company name" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Contact Information <span class="text-red-500">*</span></label>
+                                <input type="text" name="contact_information" placeholder="Email or phone number" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Product Categories</label>
+                                <input type="text" name="product_categories" placeholder="e.g. Consumer Goods, Machinery" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Production Capacity</label>
+                                <input type="text" name="production_capacity" placeholder="e.g. 10,000 units per month" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Certifications</label>
+                                <input type="text" name="certifications" placeholder="e.g. ISO 9001, FDA" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Export Markets</label>
+                                <input type="text" name="export_markets" placeholder="e.g. North America, Europe" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Products Available</label>
+                                <textarea name="products_available" placeholder="Describe the products you have available for export..." rows="3" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                            </div>
+                        </div>
+                    {% elif role == 'partner' %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Company Profile <span class="text-red-500">*</span></label>
+                                <textarea name="company_profile" placeholder="Briefly describe your company's background and expertise..." required rows="3" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Services Offered <span class="text-red-500">*</span></label>
+                                <textarea name="services_offered" placeholder="Describe the services you offer to partners..." required rows="3" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Target Market</label>
+                                <input type="text" name="target_market" placeholder="e.g. B2B, Retail, Wholesale" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Areas of Cooperation</label>
+                                <input type="text" name="areas_of_cooperation" placeholder="e.g. Joint Venture, Marketing, Distribution" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Partnership Proposal</label>
+                                <textarea name="partnership_proposal" placeholder="Describe your proposal for partnership..." rows="3" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                            </div>
+                        </div>
+                    {% elif role == 'distributor' %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Country and Region <span class="text-red-500">*</span></label>
+                                <input type="text" name="country_region" placeholder="Enter your country and region" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Industry Experience (Years)</label>
+                                <input type="text" name="industry_experience" placeholder="e.g. 5 years" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Product Categories <span class="text-red-500">*</span></label>
+                                <input type="text" name="product_categories" placeholder="e.g. Automotive, Electronics" required class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Distribution Network</label>
+                                <textarea name="distribution_network" placeholder="Describe your current distribution network and coverage..." rows="3" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"></textarea>
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Sales Channels</label>
+                                <input type="text" name="sales_channels" placeholder="e.g. Online, Retail stores, B2B" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[13px] font-semibold text-slate-700 mb-1.5">Warehousing Capability</label>
+                                <input type="text" name="warehousing_capability" placeholder="e.g. 5000 sq ft, temperature controlled" class="w-full bg-white border border-slate-300 shadow-sm rounded-lg py-2 px-3 text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all">
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="mt-8 flex justify-end">
+                        <button type="submit"
+                            class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2.5 px-6 rounded-lg shadow-md shadow-blue-600/30 transition-all duration-300 flex items-center gap-2 group">
+                            <span>Submit Information</span>
+                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

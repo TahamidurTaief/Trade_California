@@ -20,3 +20,25 @@ def contact(request):
         form = ContactForm(initial=initial)
 
     return render(request, "contact/contact.html", {"locations": locations, "form": form})
+
+def connect(request, role):
+    valid_roles = {
+        'buyer': 'I am a Buyer',
+        'supplier': 'U.S. Supplier',
+        'partner': 'I am a Business Partner',
+        'distributor': 'I am a Distributor'
+    }
+    
+    if role not in valid_roles:
+        return redirect('contact')
+        
+    title = valid_roles[role]
+    
+    if request.method == 'POST':
+        from .models import ConnectSubmission
+        data = {k: v for k, v in request.POST.items() if k != 'csrfmiddlewaretoken'}
+        ConnectSubmission.objects.create(role=role, data=data)
+        messages.success(request, 'Your submission has been received successfully!')
+        return redirect('contact')
+        
+    return render(request, "contact/connect.html", {"role": role, "title": title})

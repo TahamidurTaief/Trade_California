@@ -67,6 +67,9 @@ class ProductsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
         ('Hero Section', {
             'fields': ('hero_headline', 'hero_subtext', 'hero_background')
         }),
+        ('Catalog Section', {
+            'fields': ('catalog_badge_text', 'catalog_title_prefix', 'catalog_title_highlight', 'catalog_subtext')
+        }),
     )
 
 @admin.register(ServicesPageSettings)

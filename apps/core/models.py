@@ -181,6 +181,11 @@ class ProductsPageSettings(SingletonModel):
     hero_subtext = models.TextField(default="Explore our premium catalog of American products.", blank=True, null=True)
     hero_background = models.ImageField(upload_to='site/hero/', blank=True, null=True)
 
+    catalog_badge_text = models.CharField(max_length=50, default="Global Export Portfolio", blank=True)
+    catalog_title_prefix = models.CharField(max_length=100, default="California's Premium", blank=True)
+    catalog_title_highlight = models.CharField(max_length=100, default="Trade Directory", blank=True)
+    catalog_subtext = models.TextField(default="Seamlessly navigate our meticulously curated selection of high-value commodities, agricultural products, and industrial resources ready for the global market.", blank=True)
+
 
     def __str__(self):
         return "Products Page Settings"

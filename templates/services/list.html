@@ -3,7 +3,7 @@
 
 {% block content %}
 <section
-    class="relative pt-16 pb-12 lg:pt-20 lg:pb-16 overflow-hidden bg-slate-900 text-white border-b border-slate-800">
+    class="relative pt-12 pb-8 lg:pt-16 lg:pb-12 overflow-hidden bg-slate-900 text-white border-b border-slate-800">
     {% if services_settings.hero_background %}
     <div class="absolute inset-0 z-0">
         <img src="{{ services_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-cover"
@@ -36,7 +36,7 @@
 
 <!-- Professional Services for International Trade -->
 <!-- Professional Services for International Trade -->
-<section class="py-16 lg:py-24 bg-white relative">
+<section class="py-12 lg:py-16 bg-white relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
             <div class="flex justify-center mb-4">
@@ -77,7 +77,7 @@
             }
         </style>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             <!-- Service 1 -->
             <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-indigo-200 hover:shadow-lg transition-all duration-300 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
                 <div class="w-12 h-12 bg-indigo-50 border border-indigo-100 rounded-lg flex items-center justify-center mb-5">
@@ -160,144 +160,130 @@
     </div>
 </section>
 
-<!-- Why Choose Us Section (Dummy Data) -->
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-            <span
-                class="inline-block py-1 px-3 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3"
-                data-aos="fade-down">Why Choose Us</span>
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4" data-aos="fade-up">Exceptional Service
-                Delivered</h2>
-            <p class="text-base text-slate-500" data-aos="fade-up" data-aos-delay="100">Experience the difference with
-                our dedicated approach. We provide comprehensive solutions tailored to your unique international trade
-                requirements.</p>
+<!-- Alternative Design 1: Suggested Services Categories -->
+<section class="py-12 lg:py-16 bg-slate-50 border-t border-slate-100 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-5" style="font-family: serif;">SERVICES</h2>
+            <p class="text-base text-slate-600 leading-relaxed font-medium mb-6">
+                Use Services for expertise, consulting, technology, and business support.
+            </p>
+            <div class="flex justify-center">
+                <span class="inline-block py-1 px-4 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold tracking-widest uppercase mb-8">Suggested Services categories</span>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Feature 1 -->
-            <div class="group p-6 bg-white border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(79,70,229,0.15)] hover:border-indigo-100 transition-all duration-500 relative overflow-hidden"
-                data-aos="fade-up" data-aos-delay="100">
-                <div class="flex items-center gap-4 mb-4">
-                    <div
-                        class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600 transition-colors duration-500">
-                        <svg class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-500"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-900 transition-colors">Secure
-                        Transactions</h3>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Our platform ensures that every trade is backed by
-                    industry-leading security protocols, giving you peace of mind.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <span class="font-bold text-slate-800 text-sm leading-tight">Business Matching & Partner</span>
             </div>
-
-            <!-- Feature 2 -->
-            <div class="group p-6 bg-white border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(79,70,229,0.15)] hover:border-indigo-100 transition-all duration-500 relative overflow-hidden"
-                data-aos="fade-up" data-aos-delay="200">
-                <div class="flex items-center gap-4 mb-4">
-                    <div
-                        class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600 transition-colors duration-500">
-                        <svg class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-500"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-900 transition-colors">Fast
-                        Processing</h3>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Accelerate your business with our optimized workflows
-                    designed to minimize delays and maximize efficiency.</p>
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+                <span class="font-bold text-slate-800 text-sm leading-tight">U.S. Supplier Sourcing</span>
             </div>
-
-            <!-- Feature 3 -->
-            <div class="group p-6 bg-white border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(79,70,229,0.15)] hover:border-indigo-100 transition-all duration-500 relative overflow-hidden"
-                data-aos="fade-up" data-aos-delay="300">
-                <div class="flex items-center gap-4 mb-4">
-                    <div
-                        class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600 transition-colors duration-500">
-                        <svg class="w-6 h-6 text-indigo-600 group-hover:text-white transition-colors duration-500"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-900 transition-colors">Global
-                        Reach</h3>
-                </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Connect with partners worldwide. Our extensive network
-                    opens doors to new markets and endless possibilities.</p>
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <span class="font-bold text-slate-800 text-sm leading-tight">Export & Import Support</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="250">
+                <span class="font-bold text-slate-800 text-sm leading-tight">Logistics & Supply-Chain Coordination</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                <span class="font-bold text-slate-800 text-sm leading-tight">International Business Representation</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="350">
+                <span class="font-bold text-slate-800 text-sm leading-tight">Energy Project Consulting</span>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-center text-center hover:shadow-md hover:border-indigo-300 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                <span class="font-bold text-slate-800 text-sm leading-tight">Healthcare Technology Consulting</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- How It Works Section (Dummy Data) -->
-<section class="py-16 bg-slate-50 border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-            <span
-                class="inline-block py-1 px-3 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-widest mb-3"
-                data-aos="fade-down">Our Process</span>
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900" data-aos="fade-up">How It Works</h2>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 relative">
-            <!-- Step 1 -->
-            <div class="group h-full bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-10 h-10 flex-shrink-0 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm font-bold text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-colors">
-                    1
+<!-- Alternative Design 2: Another Summary Services -->
+<section class="py-12 lg:py-16 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto bg-slate-900 rounded-3xl overflow-hidden" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-5">
+                <div class="md:col-span-2 bg-indigo-600 p-8 flex flex-col justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-20">
+                        <svg class="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <polygon fill="currentColor" points="0,100 100,0 100,100" />
+                        </svg>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-extrabold text-white mb-4" style="font-family: serif;">Services</h2>
+                        <p class="text-indigo-100 font-medium leading-relaxed">Your professional business services:</p>
+                    </div>
                 </div>
-                <div class="flex-1">
-                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">Register</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Create an account and select your role (Buyer, Seller, Distributor).</p>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="group h-full bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-10 h-10 flex-shrink-0 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm font-bold text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-colors">
-                    2
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">Verify</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Complete our simple verification process to ensure a trusted network.</p>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="group h-full bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-10 h-10 flex-shrink-0 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm font-bold text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-colors">
-                    3
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">Connect</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Browse, match, and connect with potential global partners.</p>
-                </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="group h-full bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-10 h-10 flex-shrink-0 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-sm font-bold text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-colors">
-                    4
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors">Trade</h3>
-                    <p class="text-slate-500 text-xs leading-relaxed">Finalize deals and begin trading with confidence and security.</p>
+                <div class="md:col-span-3 p-8 lg:p-10 bg-slate-900">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">U.S. Product Sourcing</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">International Market Entry</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">Business Matching</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">Market Research</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">Export & Import Support</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">Logistics Coordination</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1 w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <span class="text-slate-300 text-sm font-medium">International Business Representation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 
 <!-- CTA Section -->
-<section class="py-16 relative overflow-hidden bg-indigo-900 text-white">
+<section class="py-12 lg:py-16 relative overflow-hidden bg-indigo-900 text-white">
     <div class="absolute inset-0 overflow-hidden z-0">
         <div
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-indigo-600 blur-[100px] mix-blend-screen opacity-50">

@@ -31,3 +31,19 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.created_at.strftime('%Y-%m-%d')}"
+
+class ConnectSubmission(models.Model):
+    ROLE_CHOICES = [
+        ('buyer', 'I am a Buyer'),
+        ('supplier', 'U.S. Supplier'),
+        ('partner', 'I am a Business Partner'),
+        ('distributor', 'I am a Distributor'),
+    ]
+    
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    data = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.get_role_display()} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+

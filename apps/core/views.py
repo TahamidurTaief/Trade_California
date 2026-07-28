@@ -92,16 +92,14 @@ def ai_chat(request):
                               'tagline', 'কোম্পানির', 'বিস্তারিত', 'পরিচয়']
             is_about_query = any(w in lower_msg for w in about_keywords)
 
-            # ── Build product/service text for AI ──────────────────────────────
+            # ── Build trader/service text for AI ──────────────────────────────
             product_details = []
             for p in products:
-                detail = f"- Product #{p.id}"
                 if p.image:
-                    detail += f", ImageURL: {request.build_absolute_uri(p.image.url)}"
-                    
-                product_details.append(detail)
+                    detail = f"![Trader]({request.build_absolute_uri(p.image.url)})"
+                    product_details.append(detail)
 
-            service_details = [f"- {s.title}: {s.short_description[:120]}" for s in services]
+            service_details = [f"- **{s.title}**: {s.short_description}" for s in services]
 
 
 
@@ -132,7 +130,7 @@ def ai_chat(request):
             system_prompt = f"""You are a precise AI assistant for Trade California — a premium international trade & business platform.
 
 == WEBSITE DATA ==
-Products:
+All Trade:
 {product_text}
 
 Services:
@@ -143,7 +141,7 @@ Company Info:
 
 == GOLDEN RULE ==
 Answer ONLY what the user asked. Nothing more.
-- Asked about products → show ONLY products.
+- Asked about traders/photos → show ONLY All Trade images side by side.
 - Asked about services → show ONLY services.
 - Asked about the company/about → give company info only.
 - General question → answer only that.
@@ -165,8 +163,8 @@ Match the user's language exactly:
 == FORMAT ==
 - Use - bullet points for lists.
 - **Bold** for names/titles.
-- One item per line. Tight and clean.
-- IMPORTANT: When listing products, ALWAYS include the product image if an ImageURL is provided. Use markdown format: ![Product Name](ImageURL) at the beginning of the bullet point. Example: - ![Almonds](http://...) **California Almonds**"""
+- One item per line for general lists, but for images put them on the same line. Tight and clean.
+- IMPORTANT: When listing traders/trades, ALWAYS output the trader images sequentially on the same line, separated by a single space. Use markdown format: ![Trader](ImageURL). Do NOT use bullet points for images."""
 
             api_key = os.environ.get('GEMINI_API_KEY')
             if not api_key or not genai:
@@ -202,39 +200,36 @@ Match the user's language exactly:
                     asks_product = any(w in lower_msg for w in [
                         "product", "পণ্য", "item", "maal", "jinis", "category",
                         "ক্যাটাগরি", "show", "dao", "deo", "list", "dekhao",
-                        "ki ki ache", "ki ache", "gula", "gulo"
+                        "ki ki ache", "ki ache", "gula", "gulo", "trader", "traders", "photo", "photos", "chobi", "trade", "phto"
                     ])
 
                 if asks_product and not asks_service:
                     cat_map = defaultdict(list)
 
                     for p in products:
-                        cat_name = "Products"
+                        cat_name = "All Trade"
                         
-                        pn = f"Product #{p.id}"
                         if p.image:
                             img_url = request.build_absolute_uri(p.image.url)
-                            pn = f"![{pn}]({img_url}) {pn}"
-                            
-                        cat_map[cat_name].append(pn)
+                            pn = f"![Trader]({img_url})"
+                            cat_map[cat_name].append(pn)
 
                     resp_lines = []
                     for cat, p_names in cat_map.items():
                         resp_lines.append(f"**{cat}:**")
-                        for pn in p_names:
-                            resp_lines.append(f"- {pn}")
+                        resp_lines.append(" ".join(p_names))
                         resp_lines.append("")
 
-                    resp = "\n".join(resp_lines).strip() if resp_lines else "Kono product pawa jacche na."
+                    resp = "\n".join(resp_lines).strip() if resp_lines else "Kono trader pawa jacche na."
                 elif asks_service and not asks_product:
-                    resp = "\n".join([f"- {s.title}" for s in services]) or "Kono service pawa jacche na."
+                    resp = "\n".join([f"- **{s.title}**: {s.short_description}\n" for s in services]) or "Kono service pawa jacche na."
                 elif is_about_query:
                     if about_text:
                         resp = about_text
                     else:
                         resp = "Trade California International — a premium international trade & business platform connecting American products with global markets."
                 else:
-                    resp = "Ami Trade California er AI assistant. Products, services, mentors, ba jekono question korte paren."
+                    resp = "Ami Trade California er AI assistant. Traders, services, mentors, ba jekono question korte paren."
                 return JsonResponse({'response': resp})
 
             genai.configure(api_key=api_key)

@@ -3,6 +3,7 @@ from .models import (
     HomePageSettings, AboutPageSettings, ProductsPageSettings,
     ContactPageSettings, RegistrationPageSettings
 )
+from apps.products.models import Category
 
 def site_context(request):
     try:
@@ -37,6 +38,7 @@ def site_context(request):
 
     nav_links = NavigationLink.objects.filter(is_active=True)
     footer_links = FooterLink.objects.filter(is_active=True)
+    main_categories = Category.objects.filter(parent__isnull=True).prefetch_related('children__children')
 
     return {
         'site_settings': settings,
@@ -48,4 +50,5 @@ def site_context(request):
         'registration_settings': registration_settings,
         'nav_links': nav_links,
         'footer_links': footer_links,
+        'main_categories': main_categories,
     }

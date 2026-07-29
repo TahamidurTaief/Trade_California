@@ -110,6 +110,11 @@ class HomePageSettings(SingletonModel):
     # About Section (Right above Why Choose Us)
     about_section_badge_text = models.CharField(max_length=50, default="About Us", blank=True)
     about_section_title = models.CharField(max_length=255, default="About Trade California", blank=True)
+    about_section_image = models.ImageField(upload_to='site/about/', blank=True, null=True)
+    
+    # Bottom Large Image Section
+    bottom_large_image = models.ImageField(upload_to='site/bottom_banner/', blank=True, null=True, help_text="Large image displayed at the bottom of the home page")
+    
     about_section_content = HTMLField(blank=True, default="""
     <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">Your Gateway to U.S. Trade</h3>
     <p style="margin-bottom: 1rem;">Trade California supports international businesses, government buyers, distributors, and organizations seeking reliable access to American products and business opportunities.</p>

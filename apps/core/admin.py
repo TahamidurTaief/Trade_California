@@ -36,6 +36,12 @@ class HomePageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
         ('Overview Section', {
             'fields': ('overview_badge_text', 'overview_image', 'overview_title', 'overview_tagline', 'overview_content')
         }),
+        ('About Section', {
+            'fields': ('about_section_badge_text', 'about_section_title', 'about_section_image', 'about_section_content')
+        }),
+        ('Bottom Large Image Section', {
+            'fields': ('bottom_large_image',)
+        }),
         ('Why Choose Us Section', {
             'fields': ('why_choose_us_headline',)
         }),

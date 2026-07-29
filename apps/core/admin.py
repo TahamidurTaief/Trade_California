@@ -6,8 +6,8 @@ from solo.admin import SingletonModelAdmin
 from .models import (
     SiteSettings, NavigationLink, FooterLink, CompanyValue, TeamMember,
     NewsletterSubscriber, HomePageSettings, AboutPageSettings,
-    ProductsPageSettings, ContactPageSettings,
-    RegistrationPageSettings, WhyChooseUsItem
+    ProductsPageSettings,
+    RegistrationPageSettings, WhyChooseUsItem, TradePageImage
 )
 
 @admin.register(SiteSettings)
@@ -64,25 +64,21 @@ class AboutPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
         }),
     )
 
+class TradePageImageInline(admin.TabularInline):
+    model = TradePageImage
+    extra = 1
+
 @admin.register(ProductsPageSettings)
 class ProductsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
     fieldsets = (
-        ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
-        }),
-        ('Catalog Section', {
-            'fields': ('catalog_badge_text', 'catalog_title_prefix', 'catalog_title_highlight', 'catalog_subtext')
+        ('Trade Content', {
+            'fields': ('trade_title', 'trade_description')
         }),
     )
+    inlines = [TradePageImageInline]
 
 
-@admin.register(ContactPageSettings)
-class ContactPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
-    fieldsets = (
-        ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
-        }),
-    )
+
 
 @admin.register(RegistrationPageSettings)
 class RegistrationPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):

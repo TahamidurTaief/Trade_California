@@ -182,14 +182,9 @@ class AboutPageSettings(SingletonModel):
         verbose_name_plural = "About Page Settings"
 
 class ProductsPageSettings(SingletonModel):
-    hero_headline = models.CharField(max_length=255, default="Our Products", blank=True, null=True)
-    hero_subtext = models.TextField(default="Explore our premium catalog of American products.", blank=True, null=True)
-    hero_background = models.ImageField(upload_to='site/hero/', blank=True, null=True)
-
-    catalog_badge_text = models.CharField(max_length=50, default="Global Export Portfolio", blank=True)
-    catalog_title_prefix = models.CharField(max_length=100, default="California's Premium", blank=True)
-    catalog_title_highlight = models.CharField(max_length=100, default="Trade Directory", blank=True)
-    catalog_subtext = models.TextField(default="Seamlessly navigate our meticulously curated selection of high-value commodities, agricultural products, and industrial resources ready for the global market.", blank=True)
+    # Trade Content
+    trade_title = models.CharField(max_length=255, default="Trading American Products Around the World", blank=True)
+    trade_description = RichTextField(blank=True, default="<p>Trade California connects international buyers with selected U.S.-based commodities, agricultural products, healthcare products, food and beverages, and other American products.</p><p>We work to facilitate communication between qualified buyers and U.S. suppliers for international trade opportunities.</p>")
 
 
     def __str__(self):
@@ -199,20 +194,21 @@ class ProductsPageSettings(SingletonModel):
         verbose_name = "Products Page Settings"
         verbose_name_plural = "Products Page Settings"
 
+class TradePageImage(models.Model):
+    page_settings = models.ForeignKey(ProductsPageSettings, on_delete=models.CASCADE, related_name='trade_images')
+    image = models.ImageField(upload_to='site/trade/')
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
 
-
-class ContactPageSettings(SingletonModel):
-    hero_headline = models.CharField(max_length=255, default="Contact Us", blank=True, null=True)
-    hero_subtext = models.TextField(default="Get in touch with our expert team today.", blank=True, null=True)
-    hero_background = models.ImageField(upload_to='site/hero/', blank=True, null=True)
-
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
-        return "Contact Page Settings"
-    
-    class Meta:
-        verbose_name = "Contact Page Settings"
-        verbose_name_plural = "Contact Page Settings"
+        return f"Trade Image {self.id}"
+
+
+
+
 
 class RegistrationPageSettings(SingletonModel):
     hero_headline = models.CharField(max_length=255, default="Partner Registration", blank=True, null=True)

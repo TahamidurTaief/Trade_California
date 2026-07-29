@@ -1,7 +1,7 @@
 from .models import (
     SiteSettings, NavigationLink, FooterLink,
     HomePageSettings, AboutPageSettings, ProductsPageSettings,
-    ContactPageSettings, RegistrationPageSettings
+    RegistrationPageSettings
 )
 from apps.products.models import Category
 
@@ -26,10 +26,7 @@ def site_context(request):
     except ProductsPageSettings.DoesNotExist:
         products_settings = None
 
-    try:
-        contact_settings = ContactPageSettings.objects.get()
-    except ContactPageSettings.DoesNotExist:
-        contact_settings = None
+
         
     try:
         registration_settings = RegistrationPageSettings.objects.get()
@@ -46,7 +43,7 @@ def site_context(request):
         'about_settings': about_settings,
         'products_settings': products_settings,
 
-        'contact_settings': contact_settings,
+
         'registration_settings': registration_settings,
         'nav_links': nav_links,
         'footer_links': footer_links,

@@ -3,37 +3,7 @@
 {% block title %}Contact Us | {{ site_settings.site_name }}{% endblock %}
 
 {% block content %}
-<section
-    class="relative pt-20 pb-16 lg:pt-28 lg:pb-24 overflow-hidden bg-slate-900 text-white border-b border-slate-800">
-    {% if contact_settings.hero_background %}
-    <div class="absolute inset-0 z-0">
-        <img src="{{ contact_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-cover"
-            style="opacity: {{ contact_settings.hero_opacity_percentage|default:20 }}%;">
-    </div>
-    {% else %}
-    <div class="absolute inset-0 overflow-hidden opacity-30 z-0">
-        <div
-            class="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-indigo-600 blur-[120px] mix-blend-screen opacity-40">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-blue-500 blur-[100px] mix-blend-screen opacity-30">
-        </div>
-    </div>
-    {% endif %}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <span
-            class="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold uppercase tracking-widest mb-6"
-            data-aos="fade-down">Contact Us</span>
-        {% if contact_settings.hero_headline %}
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-white" data-aos="fade-up"
-            data-aos-delay="100">{{ contact_settings.hero_headline }}</h1>
-        {% endif %}
-        {% if contact_settings.hero_subtext %}
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed" data-aos="fade-up"
-            data-aos-delay="100">{{ contact_settings.hero_subtext }}</p>
-        {% endif %}
-    </div>
-</section>
+
 
 <section class="pt-24 pb-12 bg-slate-50 relative z-0 border-b border-slate-200/60">
     <div class="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-white to-transparent -z-10"></div>

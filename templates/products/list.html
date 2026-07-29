@@ -1,217 +1,57 @@
 {% extends "base.html" %}
-{% block title %}Trade Catalog | {{ site_settings.site_name }}{% endblock %}
+{% load static %}
+{% block title %}Trade | {{ site_settings.site_name }}{% endblock %}
 
 {% block content %}
-<!-- Premium Hero Section -->
-<section
-    class="relative pt-20 pb-16 lg:pt-28 lg:pb-24 overflow-hidden bg-slate-900 text-white border-b border-slate-800">
-    {% if products_settings.hero_background %}
-    <div class="absolute inset-0 z-0">
-        <img src="{{ products_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-cover"
-            style="opacity: {{ products_settings.hero_opacity_percentage|default:20 }}%;">
-    </div>
-    {% else %}
-    <div class="absolute inset-0 overflow-hidden opacity-30 z-0">
-        <div
-            class="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-indigo-600 blur-[120px] mix-blend-screen opacity-40">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-blue-500 blur-[100px] mix-blend-screen opacity-30">
-        </div>
-    </div>
-    {% endif %}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <span
-            class="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-semibold uppercase tracking-widest mb-6"
-            data-aos="fade-down">Global Trade Portal</span>
-        {% if products_settings.hero_headline %}
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-white" data-aos="fade-up"
-            data-aos-delay="100">{{ products_settings.hero_headline }}</h1>
-        {% endif %}
-        {% if products_settings.hero_subtext %}
-        <p class="text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed" data-aos="fade-up"
-            data-aos-delay="200">{{ products_settings.hero_subtext }}</p>
-        {% endif %}
-    </div>
-</section>
-
-<section class="py-16 bg-slate-50 min-h-screen">
-    <style>
-        .catalog-menu-container {
-            width: 100%;
-        }
-        @media (min-width: 1024px) {
-            .catalog-centering-wrapper {
-                width: 20rem; /* 320px */
-                transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .catalog-centering-wrapper:has(details[name="level1"][open]) {
-                width: 40.5rem; /* 20rem + 0.5rem margin + 20rem */
-            }
-            .catalog-centering-wrapper:has(details[name^="level2_"][open]) {
-                width: 59rem; /* 40.5rem + 0.5rem margin + 18rem */
-            }
+<section class="py-16 md:py-24 lg:py-32 bg-slate-50 min-h-screen flex flex-col justify-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        
+        <!-- Text Content -->
+        <div class="text-center max-w-4xl mx-auto mb-10 md:mb-16" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight text-slate-900 leading-tight">
+                {{ products_settings.trade_title|safe }}
+            </h1>
             
-            .catalog-menu-container {
-                width: 20rem; /* Keeps the main card fixed width while wrapper expands */
-            }
-            .catalog-flyout {
-                position: absolute;
-                left: 100%;
-                top: 0;
-                margin-left: 0.5rem;
-                width: 20rem;
-                opacity: 0;
-                transform: translateX(-10px);
-                animation: menu-slide-in 0.4s forwards cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .catalog-flyout-inner {
-                position: absolute;
-                left: 100%;
-                top: 0;
-                margin-left: 0.5rem;
-                width: 18rem; /* 288px */
-                opacity: 0;
-                transform: translateX(-10px);
-                animation: menu-slide-in 0.4s forwards cubic-bezier(0.4, 0, 0.2, 1);
-            }
+            <div class="w-16 h-1 bg-indigo-600 mx-auto rounded-full mb-6 opacity-80"></div>
             
-            @keyframes menu-slide-in {
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-        }
-        @media (max-width: 1023px) {
-            .catalog-centering-wrapper {
-                width: 100%;
-            }
-            .catalog-flyout, .catalog-flyout-inner {
-                position: relative;
-                left: auto;
-                top: auto;
-                width: auto;
-                margin-top: 0.5rem;
-                margin-left: 0.75rem;
-                border-left: 2px solid #e2e8f0;
-                border-radius: 0;
-                border-top: none;
-                border-right: none;
-                border-bottom: none;
-                box-shadow: none !important;
-            }
-            .hide-on-mobile {
-                display: none;
-            }
-        }
-        
-        /* Smooth arrow rotation */
-        .catalog-arrow {
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-        details:not([open]) > summary .catalog-arrow {
-            transform: rotate(-90deg); /* Right */
-        }
-        details[open] > summary .catalog-arrow {
-            transform: rotate(0deg); /* Down */
-        }
-        
-        /* Bridge element to keep hover/click active between gaps */
-        .flyout-bridge {
-            position: absolute;
-            left: -15px;
-            top: 0;
-            width: 15px;
-            height: 100%;
-        }
-        @media (max-width: 1023px) {
-            .flyout-bridge { display: none; }
-        }
-    </style>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="mb-14 text-center" data-aos="fade-up">
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-5 tracking-tight text-slate-900 flex flex-wrap justify-center items-center gap-x-2 md:gap-x-3 text-center w-full mx-auto">
-                <span>{{ products_settings.catalog_title_prefix|default:"California's Premium" }}</span>
-                <span class="text-indigo-600">{{ products_settings.catalog_title_highlight|default:"Trade Directory" }}</span>
-            </h2>
-            <p class="text-slate-500 text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-                {{ products_settings.catalog_subtext|default:"Seamlessly navigate our meticulously curated selection of high-value commodities, agricultural products, and industrial resources ready for the global market." }}
-            </p>
-        </div>
-        
-        <div class="flex justify-center mt-12 pb-32 lg:pb-64">
-            <!-- Dynamic Centering Wrapper -->
-            <div class="catalog-centering-wrapper relative">
-                <!-- Main Level Container -->
-                <div class="catalog-menu-container bg-white rounded-2xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative z-10" data-aos="fade-up">
-                    <div class="p-2 sm:p-4">
-                        <div class="space-y-1 mt-2">
-                            {% for main_cat in main_categories %}
-                            {% if main_cat.children.exists %}
-                            <details class="group/level1 relative" name="level1">
-                                <summary class="flex items-center justify-between cursor-pointer list-none py-3 px-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors font-semibold text-base group-open/level1:bg-indigo-50 group-open/level1:text-indigo-700">
-                                    <div class="flex items-center">
-                                        <span>{{ main_cat.name }}</span>
-                                    </div>
-                                    <svg class="w-4 h-4 text-slate-400 group-open/level1:text-indigo-500 catalog-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                </summary>
-                                
-                                <!-- Level 2 Flyout -->
-                                <div class="catalog-flyout bg-white rounded-2xl border border-slate-200 z-20">
-                                    <div class="flyout-bridge"></div>
-                                    <div class="p-2 lg:p-4">
-                                        <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 px-4 mt-2 hide-on-mobile">{{ main_cat.name }}</h3>
-                                        <div class="space-y-1">
-                                            {% for sub_cat in main_cat.children.all %}
-                                                {% if sub_cat.children.exists %}
-                                                <details class="group/level2 relative" name="level2_{{ main_cat.id }}">
-                                                    <summary class="flex items-center justify-between cursor-pointer list-none py-2.5 px-4 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-indigo-600 transition-colors font-semibold text-sm group-open/level2:bg-slate-50 group-open/level2:text-indigo-700">
-                                                        <span>{{ sub_cat.name }}</span>
-                                                        <svg class="w-4 h-4 text-slate-400 group-open/level2:text-indigo-500 catalog-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                                    </summary>
-                                                    
-                                                    <!-- Level 3 Flyout -->
-                                                    <div class="catalog-flyout-inner bg-white rounded-2xl border border-slate-200 z-30">
-                                                        <div class="flyout-bridge"></div>
-                                                        <div class="p-2 lg:p-4">
-                                                            <h3 class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 px-4 mt-2 hide-on-mobile">{{ sub_cat.name }}</h3>
-                                                            <div class="space-y-1">
-                                                                {% for item in sub_cat.children.all %}
-                                                                <div class="py-2.5 px-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors cursor-default text-sm font-medium flex items-center gap-2 group/item">
-                                                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/item:bg-indigo-400 transition-colors"></span>
-                                                                    {{ item.name }}
-                                                                </div>
-                                                                {% endfor %}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </details>
-                                                {% else %}
-                                                <div class="py-2.5 px-4 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-indigo-600 transition-colors cursor-default font-semibold text-sm flex items-center gap-2">
-                                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-                                                    {{ sub_cat.name }}
-                                                </div>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </details>
-                            {% else %}
-                            <div class="flex items-center justify-between py-3 px-4 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors font-semibold text-base cursor-default">
-                                <div class="flex items-center">
-                                    <span>{{ main_cat.name }}</span>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+            <div class="space-y-4 text-base md:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto">
+                {{ products_settings.trade_description|safe }}
             </div>
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8" data-aos="fade-up" data-aos-delay="100">
+            {% if products_settings.trade_images.all %}
+                {% for trade_img in products_settings.trade_images.all %}
+                    {% if trade_img.is_active %}
+                    <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/5] group relative bg-slate-200">
+                        <img src="{{ trade_img.image.url }}" alt="Trade highlight" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                        <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <!-- Fallback 4 images -->
+                <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/5] group relative bg-slate-200">
+                    <img src="/media/products/wheat01.jpeg" alt="Wheat field" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                
+                <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/5] group relative bg-slate-200">
+                    <img src="/media/products/agro01.joeg.jpg" alt="Wheat close up" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                
+                <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/5] group relative bg-slate-200">
+                    <img src="/media/products/sun01.jpeg" alt="Harvester in field" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                
+                <div class="rounded-2xl overflow-hidden shadow-xl aspect-[4/5] group relative bg-slate-200">
+                    <img src="/media/products/soya01.jpeg" alt="Grains and agriculture" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out">
+                    <div class="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+            {% endif %}
         </div>
         
     </div>

@@ -661,6 +661,58 @@
                 </div>
             </div>
         </div>
+
+        <!-- Script to remove numbering and handle responsive submenus -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // 1. Remove leading numbers from category names
+                function removeLeadingNumbers(element) {
+                    element.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            let text = node.textContent;
+                            // Regex to match leading numbers like "1. ", "2- ", "3) ", "10 "
+                            let newText = text.replace(/^\s*[0-9]+[\.\-\)\s]+\s*/, '');
+                            if (text !== newText) {
+                                node.textContent = newText;
+                            }
+                        } else if (node.nodeType === Node.ELEMENT_NODE) {
+                            removeLeadingNumbers(node);
+                        }
+                    });
+                }
+                
+                // Target both desktop and mobile dropdowns
+                const tradeDropdowns = document.querySelectorAll('.tc-main-dropdown, #mobile-menu details');
+                tradeDropdowns.forEach(dropdown => removeLeadingNumbers(dropdown));
+
+                // 2. Prevent sub-dropdowns from going off the bottom of the screen
+                const subItems = document.querySelectorAll('.tc-sub-item');
+                subItems.forEach(item => {
+                    item.addEventListener('mouseenter', function() {
+                        const dropdown = this.querySelector(':scope > .tc-sub-dropdown');
+                        if (dropdown) {
+                            // Reset positioning to default (opening downwards)
+                            dropdown.style.top = '-14px';
+                            dropdown.style.bottom = 'auto';
+                            dropdown.classList.remove('origin-bottom-left');
+                            dropdown.classList.add('origin-top-left');
+
+                            // Calculate if it goes out of the viewport
+                            const rect = dropdown.getBoundingClientRect();
+                            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                            
+                            if (rect.bottom > windowHeight) {
+                                // If it overflows, make it open upwards
+                                dropdown.style.top = 'auto';
+                                dropdown.style.bottom = '-14px';
+                                dropdown.classList.remove('origin-top-left');
+                                dropdown.classList.add('origin-bottom-left');
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
     </header>
 
     <!-- Main Content -->

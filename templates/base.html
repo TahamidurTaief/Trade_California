@@ -426,19 +426,12 @@
                                 </div>
                             </div>
                         </div>
-                        {% elif link.label.lower != 'connect' %}
-                        <a href="{{ link.url }}"
-                            class="px-4 h-full flex items-center text-[13px] font-medium transition-colors duration-200 text-blue-50 hover:text-white hover:bg-white/10 gap-1.5 group relative">
-                            {{ link.label }}
-                        </a>
-                        {% endif %}
-                        {% endfor %}
-
+                        {% elif link.label.lower == 'connect' %}
                         <!-- Connect Dropdown -->
                         <div class="relative group h-full flex items-center">
                             <button
                                 class="px-4 h-full flex items-center text-[13px] font-medium transition-colors duration-200 text-blue-50 hover:text-white hover:bg-white/10 gap-1.5 focus:outline-none">
-                                Connect
+                                {{ link.label }}
                                 <svg class="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 transition-transform duration-200 group-hover:rotate-180"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -476,6 +469,13 @@
                                 </div>
                             </div>
                         </div>
+                        {% else %}
+                        <a href="{{ link.url }}"
+                            class="px-4 h-full flex items-center text-[13px] font-medium transition-colors duration-200 text-blue-50 hover:text-white hover:bg-white/10 gap-1.5 group relative">
+                            {{ link.label }}
+                        </a>
+                        {% endif %}
+                        {% endfor %}
                     </nav>
                 </div>
 
@@ -591,17 +591,10 @@
                         {% endfor %}
                     </div>
                 </details>
-                {% elif link.label.lower != 'connect' %}
-                <a href="{{ link.url }}"
-                    class="flex items-center justify-between px-4 py-3.5 text-[15px] font-bold text-slate-700 rounded-xl hover:bg-indigo-50 hover:text-indigo-700 transition-all border border-transparent hover:border-indigo-100 mb-1">
-                    {{ link.label }}
-                </a>
-                {% endif %}
-                {% endfor %}
-
+                {% elif link.label.lower == 'connect' %}
                 <!-- Connect Mobile Dropdown (Simulated as nested links) -->
-                <div class="px-4 py-2 mt-2 border-t border-slate-100">
-                    <p class="text-[12px] font-bold text-slate-400 mb-2 tracking-wider uppercase">Connect</p>
+                <div class="px-4 py-2 mb-1 border-t border-b border-slate-100 bg-slate-50/50 rounded-xl">
+                    <p class="text-[12px] font-bold text-slate-400 mb-2 tracking-wider uppercase">{{ link.label }}</p>
                     <div class="space-y-1">
                         <a href="{% url 'connect' 'buyer' %}"
                             class="flex items-center gap-3 px-3 py-2.5 text-[14px] font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors">
@@ -641,6 +634,13 @@
                         </a>
                     </div>
                 </div>
+                {% else %}
+                <a href="{{ link.url }}"
+                    class="flex items-center justify-between px-4 py-3.5 text-[15px] font-bold text-slate-700 rounded-xl hover:bg-indigo-50 hover:text-indigo-700 transition-all border border-transparent hover:border-indigo-100 mb-1">
+                    {{ link.label }}
+                </a>
+                {% endif %}
+                {% endfor %}
 
                 <!-- Mobile Contact Info -->
                 <div

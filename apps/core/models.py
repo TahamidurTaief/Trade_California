@@ -194,18 +194,7 @@ class ProductsPageSettings(SingletonModel):
         verbose_name = "Products Page Settings"
         verbose_name_plural = "Products Page Settings"
 
-class ServicesPageSettings(SingletonModel):
-    hero_headline = models.CharField(max_length=255, default="Our Services", blank=True, null=True)
-    hero_subtext = models.TextField(default="Comprehensive solutions for international trade.", blank=True, null=True)
-    hero_background = models.ImageField(upload_to='site/hero/', blank=True, null=True)
 
-
-    def __str__(self):
-        return "Services Page Settings"
-    
-    class Meta:
-        verbose_name = "Services Page Settings"
-        verbose_name_plural = "Services Page Settings"
 
 class ContactPageSettings(SingletonModel):
     hero_headline = models.CharField(max_length=255, default="Contact Us", blank=True, null=True)

@@ -6,7 +6,7 @@ from solo.admin import SingletonModelAdmin
 from .models import (
     SiteSettings, NavigationLink, FooterLink, CompanyValue, TeamMember,
     NewsletterSubscriber, HomePageSettings, AboutPageSettings,
-    ProductsPageSettings, ServicesPageSettings, ContactPageSettings,
+    ProductsPageSettings, ContactPageSettings,
     RegistrationPageSettings, WhyChooseUsItem
 )
 
@@ -69,13 +69,6 @@ class ProductsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
         }),
     )
 
-@admin.register(ServicesPageSettings)
-class ServicesPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
-    fieldsets = (
-        ('Hero Section', {
-            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
-        }),
-    )
 
 @admin.register(ContactPageSettings)
 class ContactPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):

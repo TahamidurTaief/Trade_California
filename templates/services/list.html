@@ -2,35 +2,6 @@
 {% block title %}Services | {{ site_settings.site_name }}{% endblock %}
 
 {% block content %}
-<section
-    class="relative pt-12 pb-8 lg:pt-16 lg:pb-12 overflow-hidden bg-slate-900 text-white border-b border-slate-800">
-    {% if services_settings.hero_background %}
-    <div class="absolute inset-0 z-0">
-        <img src="{{ services_settings.hero_background.url }}" alt="Hero Background" class="w-full h-full object-cover"
-            style="opacity: {{ services_settings.hero_opacity_percentage|default:20 }}%;">
-    </div>
-    {% else %}
-    <div class="absolute inset-0 overflow-hidden opacity-30 z-0">
-        <div
-            class="absolute top-0 right-0 w-[800px] h-[800px] rounded-full bg-indigo-600 blur-[120px] mix-blend-screen opacity-40">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-blue-500 blur-[100px] mix-blend-screen opacity-30">
-        </div>
-    </div>
-    {% endif %}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-
-        {% if services_settings.hero_headline %}
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 tracking-tight text-white" data-aos="fade-up"
-            data-aos-delay="100">{{ services_settings.hero_headline }}</h1>
-        {% endif %}
-        {% if services_settings.hero_subtext %}
-        <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed" data-aos="fade-up"
-            data-aos-delay="100">{{ services_settings.hero_subtext }}</p>
-        {% endif %}
-    </div>
-</section>
 
 <!-- Professional Services for International Trade -->
 <!-- Professional Services for International Trade -->
@@ -276,26 +247,6 @@
 
 
 
-<!-- CTA Section -->
-<section class="py-12 lg:py-16 relative overflow-hidden bg-indigo-900 text-white">
-    <div class="absolute inset-0 overflow-hidden z-0">
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-indigo-600 blur-[100px] mix-blend-screen opacity-50">
-        </div>
-    </div>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <h2 class="text-2xl md:text-4xl font-bold mb-4" data-aos="fade-up">Ready to Transform Your Trade Experience?
-        </h2>
-        <p class="text-base text-indigo-200 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Join
-            thousands of verified businesses already trading efficiently on our platform. Get started today and expand
-            your global footprint.</p>
-        <a href="/registration/"
-            class="relative overflow-hidden inline-block bg-white text-indigo-900 font-bold text-sm py-3 px-8 rounded-full shadow-lg group border border-transparent hover:border-indigo-400 transition-all duration-300"
-            data-aos="fade-up" data-aos-delay="200">
-            <span class="absolute inset-0 bg-indigo-600 transform -translate-y-full transition-transform duration-500 ease-in-out group-hover:translate-y-0 rounded-full"></span>
-            <span class="relative z-10 group-hover:text-white transition-colors duration-500">Join the Network Now</span>
-        </a>
-    </div>
-</section>
+
 
 {% endblock %}

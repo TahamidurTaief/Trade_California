@@ -1,7 +1,7 @@
 from .models import (
     SiteSettings, NavigationLink, FooterLink,
     HomePageSettings, AboutPageSettings, ProductsPageSettings,
-    ServicesPageSettings, ContactPageSettings, RegistrationPageSettings
+    ContactPageSettings, RegistrationPageSettings
 )
 
 def site_context(request):
@@ -26,11 +26,6 @@ def site_context(request):
         products_settings = None
 
     try:
-        services_settings = ServicesPageSettings.objects.get()
-    except ServicesPageSettings.DoesNotExist:
-        services_settings = None
-
-    try:
         contact_settings = ContactPageSettings.objects.get()
     except ContactPageSettings.DoesNotExist:
         contact_settings = None
@@ -48,7 +43,7 @@ def site_context(request):
         'home_settings': home_settings,
         'about_settings': about_settings,
         'products_settings': products_settings,
-        'services_settings': services_settings,
+
         'contact_settings': contact_settings,
         'registration_settings': registration_settings,
         'nav_links': nav_links,

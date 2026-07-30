@@ -294,12 +294,6 @@
                                 transform: translateX(0) scale(1);
                             }
 
-                            .tc-sub-item:hover>.tc-item-content>.tc-arrow {
-                                transform: rotate(0deg);
-                                color: #4f46e5;
-                                /* Indigo 600 */
-                            }
-
                             .tc-sub-dropdown {
                                 top: -14px;
                                 left: 100%;
@@ -371,18 +365,9 @@
                                     <div class="relative tc-sub-item rounded-xl">
                                         <div
                                             class="tc-item-content tc-menu-item flex items-center justify-between px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 cursor-pointer group/btn">
-                                            <div class="flex items-center gap-4">
-                                                <svg class="w-2 h-2 text-indigo-400 group-hover/btn:text-indigo-600 transition-colors flex-shrink-0"
-                                                    fill="currentColor" viewBox="0 0 24 24">
-                                                    <circle cx="12" cy="12" r="8"></circle>
-                                                </svg>
+                                            <div class="flex items-center">
                                                 <span class="whitespace-nowrap">{{ main_cat.name }}</span>
                                             </div>
-                                            <svg class="tc-arrow w-4 h-4 text-slate-400 transform -rotate-90 transition-transform duration-300"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 5l7 7-7-7"></path>
-                                            </svg>
                                         </div>
 
                                         <!-- Level 2 Dropdown -->
@@ -396,18 +381,9 @@
                                                 <div class="relative tc-sub-item rounded-xl">
                                                     <div
                                                         class="tc-item-content tc-menu-item flex items-center justify-between px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 cursor-pointer group/btn2">
-                                                        <div class="flex items-center gap-4">
-                                                            <svg class="w-2 h-2 text-indigo-400 group-hover/btn2:text-indigo-600 transition-colors flex-shrink-0"
-                                                                fill="currentColor" viewBox="0 0 24 24">
-                                                                <circle cx="12" cy="12" r="8"></circle>
-                                                            </svg>
+                                                        <div class="flex items-center">
                                                             <span class="whitespace-nowrap">{{ sub_cat.name }}</span>
                                                         </div>
-                                                        <svg class="tc-arrow w-4 h-4 text-slate-400 transform -rotate-90 transition-transform duration-300"
-                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                                        </svg>
                                                     </div>
 
                                                     <!-- Level 3 Dropdown -->
@@ -418,11 +394,7 @@
                                                             {% for item in sub_cat.children.all %}
                                                             <!-- Level 3 Items -->
                                                             <a href="#"
-                                                                class="tc-menu-item flex items-center gap-4 px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 group/btn3">
-                                                                <svg class="w-2 h-2 text-indigo-400 group-hover/btn3:text-indigo-600 transition-colors flex-shrink-0"
-                                                                    fill="currentColor" viewBox="0 0 24 24">
-                                                                    <circle cx="12" cy="12" r="8"></circle>
-                                                                </svg>
+                                                                class="tc-menu-item flex items-center px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 group/btn3">
                                                                 <span class="whitespace-nowrap truncate">{{ item.name
                                                                     }}</span>
                                                             </a>
@@ -433,11 +405,7 @@
                                                 {% else %}
                                                 <!-- Level 2 Items without children -->
                                                 <a href="#"
-                                                    class="tc-menu-item flex items-center gap-4 px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 group/btn2">
-                                                    <svg class="w-2 h-2 text-indigo-400 group-hover/btn2:text-indigo-600 transition-colors flex-shrink-0"
-                                                        fill="currentColor" viewBox="0 0 24 24">
-                                                        <circle cx="12" cy="12" r="8"></circle>
-                                                    </svg>
+                                                    class="tc-menu-item flex items-center px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 group/btn2">
                                                     <span class="whitespace-nowrap truncate">{{ sub_cat.name }}</span>
                                                 </a>
                                                 {% endif %}
@@ -448,11 +416,7 @@
                                     {% else %}
                                     <!-- Level 1 Items without children -->
                                     <a href="#"
-                                        class="tc-menu-item flex items-center gap-4 px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 group/btn">
-                                        <svg class="w-2 h-2 text-indigo-400 group-hover/btn:text-indigo-600 transition-colors flex-shrink-0"
-                                            fill="currentColor" viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="8"></circle>
-                                        </svg>
+                                        class="tc-menu-item flex items-center px-4 py-2.5 text-[14px] font-semibold text-slate-700 rounded-xl hover:bg-indigo-50/80 hover:text-indigo-700 transition-all duration-200 group/btn">
                                         <span class="whitespace-nowrap">{{ main_cat.name }}</span>
                                     </a>
                                     {% endif %}

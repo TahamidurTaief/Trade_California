@@ -23,10 +23,10 @@ def contact(request):
 
 def connect(request, role):
     valid_roles = {
-        'buyer': 'I am a Buyer',
+        'buyer': 'Buyer',
         'supplier': 'U.S. Supplier',
-        'partner': 'I am a Business Partner',
-        'distributor': 'I am a Distributor'
+        'partner': 'Business Partnership',
+        'distributor': 'Distributorship'
     }
     
     if role not in valid_roles:

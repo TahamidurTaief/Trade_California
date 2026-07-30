@@ -75,19 +75,40 @@
             overflow-x: hidden;
         }
 
-        /* Hide scrollbars for dropdown menus/modals and global body */
+        /* Custom Scrollbar for global body */
         html::-webkit-scrollbar,
-        body::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        html::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track {
+            background: #333333;
+        }
+        
+        html::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb {
+            background: #888888;
+            border-radius: 10px;
+            border: 2px solid #333333;
+        }
+        
+        html::-webkit-scrollbar-thumb:hover,
+        body::-webkit-scrollbar-thumb:hover {
+            background: #aaaaaa;
+        }
+        
+        html, body {
+            scrollbar-width: thin;
+            scrollbar-color: #888888 #333333;
+        }
+
+        /* Hide scrollbars for dropdown menus/modals */
         .tc-sub-dropdown::-webkit-scrollbar,
         .tc-dropdown::-webkit-scrollbar,
         .tc-mega-menu::-webkit-scrollbar,
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
-        }
-
-        html, body {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
         }
 
         .tc-sub-dropdown,
@@ -443,7 +464,7 @@
                                         class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-all duration-200 group/item">
                                         <span
                                             class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/item:bg-indigo-500 group-hover/item:scale-125 transition-all duration-300 flex-shrink-0"></span>
-                                        <span class="whitespace-nowrap">I am a Buyer</span>
+                                        <span class="whitespace-nowrap">Buyer</span>
                                     </a>
                                     <a href="{% url 'connect' 'supplier' %}"
                                         class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-all duration-200 group/item">
@@ -455,13 +476,13 @@
                                         class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-all duration-200 group/item">
                                         <span
                                             class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/item:bg-indigo-500 group-hover/item:scale-125 transition-all duration-300 flex-shrink-0"></span>
-                                        <span class="whitespace-nowrap">I am a Business Partner</span>
+                                        <span class="whitespace-nowrap">Business Partnership</span>
                                     </a>
                                     <a href="{% url 'connect' 'distributor' %}"
                                         class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-all duration-200 group/item">
                                         <span
                                             class="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover/item:bg-indigo-500 group-hover/item:scale-125 transition-all duration-300 flex-shrink-0"></span>
-                                        <span class="whitespace-nowrap">I am a Distributor</span>
+                                        <span class="whitespace-nowrap">Distributorship</span>
                                     </a>
                                 </div>
                             </div>
@@ -614,7 +635,7 @@
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
                             </path>
                         </svg>
-                        I am a Buyer
+                        Buyer
                     </a>
                     <a href="{% url 'connect' 'supplier' %}"
                         class="flex items-center gap-3 px-3 py-2.5 text-[14px] font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors">
@@ -632,7 +653,7 @@
                                 d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
                             </path>
                         </svg>
-                        I am a Business Partner
+                        Business Partnership
                     </a>
                     <a href="{% url 'connect' 'distributor' %}"
                         class="flex items-center gap-3 px-3 py-2.5 text-[14px] font-semibold text-slate-600 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors">
@@ -641,7 +662,7 @@
                                 d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                             </path>
                         </svg>
-                        I am a Distributor
+                        Distributorship
                     </a>
                 </div>
             </div>

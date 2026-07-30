@@ -4,7 +4,7 @@ from .models import (
     RegistrationPageSettings
 )
 from apps.products.models import Category
-
+from apps.contact.models import OfficeLocation
 def site_context(request):
     try:
         settings = SiteSettings.objects.get()
@@ -36,6 +36,7 @@ def site_context(request):
     nav_links = NavigationLink.objects.filter(is_active=True)
     footer_links = FooterLink.objects.filter(is_active=True)
     main_categories = Category.objects.filter(parent__isnull=True).prefetch_related('children__children')
+    primary_office = OfficeLocation.objects.order_by('order').first()
 
     return {
         'site_settings': settings,
@@ -48,4 +49,5 @@ def site_context(request):
         'nav_links': nav_links,
         'footer_links': footer_links,
         'main_categories': main_categories,
+        'primary_office': primary_office,
     }

@@ -210,6 +210,22 @@ class TradePageImage(models.Model):
 
 
 
+class ServicesPageSettings(SingletonModel):
+    hero_headline = models.CharField(max_length=255, default="Our Services", blank=True, null=True)
+    hero_subtext = models.TextField(default="Professional Business Services", blank=True, null=True)
+    hero_background = models.ImageField(upload_to='site/hero/', blank=True, null=True)
+    
+    # Large dynamic image for the services page
+    bottom_large_image = models.ImageField(upload_to='site/services_banner/', blank=True, null=True, help_text="Large dynamic image for the services page")
+
+    def __str__(self):
+        return "Services Page Settings"
+    
+    class Meta:
+        verbose_name = "Services Page Settings"
+        verbose_name_plural = "Services Page Settings"
+
+
 class RegistrationPageSettings(SingletonModel):
     hero_headline = models.CharField(max_length=255, default="Partner Registration", blank=True, null=True)
     hero_subtext = models.TextField(default="Join our global network of verified trade partners.", blank=True, null=True)

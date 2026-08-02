@@ -1,7 +1,7 @@
 from .models import (
     SiteSettings, NavigationLink, FooterLink,
     HomePageSettings, AboutPageSettings, ProductsPageSettings,
-    RegistrationPageSettings
+    RegistrationPageSettings, ServicesPageSettings
 )
 from apps.products.models import Category
 from apps.contact.models import OfficeLocation
@@ -33,6 +33,11 @@ def site_context(request):
     except RegistrationPageSettings.DoesNotExist:
         registration_settings = None
 
+    try:
+        services_settings = ServicesPageSettings.objects.get()
+    except ServicesPageSettings.DoesNotExist:
+        services_settings = None
+
     nav_links = NavigationLink.objects.filter(is_active=True)
     footer_links = FooterLink.objects.filter(is_active=True)
     main_categories = Category.objects.filter(parent__isnull=True).prefetch_related('children__children')
@@ -43,8 +48,7 @@ def site_context(request):
         'home_settings': home_settings,
         'about_settings': about_settings,
         'products_settings': products_settings,
-
-
+        'services_settings': services_settings,
         'registration_settings': registration_settings,
         'nav_links': nav_links,
         'footer_links': footer_links,

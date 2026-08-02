@@ -7,7 +7,7 @@ from .models import (
     SiteSettings, NavigationLink, FooterLink, CompanyValue, TeamMember,
     NewsletterSubscriber, HomePageSettings, AboutPageSettings,
     ProductsPageSettings,
-    RegistrationPageSettings, WhyChooseUsItem, TradePageImage
+    RegistrationPageSettings, WhyChooseUsItem, TradePageImage, ServicesPageSettings
 )
 
 @admin.register(SiteSettings)
@@ -79,6 +79,17 @@ class ProductsPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
 
 
 
+
+@admin.register(ServicesPageSettings)
+class ServicesPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):
+    fieldsets = (
+        ('Hero Section', {
+            'fields': ('hero_headline', 'hero_subtext', 'hero_background')
+        }),
+        ('Large Dynamic Image', {
+            'fields': ('bottom_large_image',)
+        }),
+    )
 
 @admin.register(RegistrationPageSettings)
 class RegistrationPageSettingsAdmin(SingletonModelAdmin, ModelAdmin):

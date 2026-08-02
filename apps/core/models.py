@@ -46,6 +46,7 @@ class TeamMember(models.Model):
     role = models.CharField(max_length=100)
     bio = RichTextField()
     photo = models.ImageField(upload_to='team/', blank=True, null=True)
+    emails = models.CharField(max_length=255, blank=True, help_text="Enter multiple emails separated by commas (e.g. email1@example.com, email2@example.com)")
     linkedin_url = models.URLField(blank=True)
     order = models.PositiveIntegerField(default=0)
     is_active = models.BooleanField(default=True)
@@ -55,6 +56,13 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def email_list(self):
+        if self.emails:
+            import re
+            return [email.strip() for email in re.split(r'[,\s]+', self.emails) if '@' in email.strip()]
+        return []
 
 class NavigationLink(models.Model):
     label = models.CharField(max_length=50)

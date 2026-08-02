@@ -8,16 +8,7 @@
 {% if team_members %}
 <section class="pt-8 pb-20 lg:pt-12 lg:pb-24 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight"
-                style="font-family: 'Playfair Display', Georgia, serif;">Meet Our Founder</h2>
-            <div class="relative w-32 mx-auto mb-6">
-                <div class="absolute inset-0 blur-sm rounded-full"
-                    style="background: linear-gradient(90deg, #1e3a8a, #3b82f6); opacity: 0.5;"></div>
-                <div class="relative h-1 w-full rounded-full"
-                    style="background: linear-gradient(90deg, #1e3a8a, #3b82f6);"></div>
-            </div>
-        </div>
+
 
         <div class="space-y-16 lg:space-y-24">
             {% for member in team_members %}
@@ -47,8 +38,22 @@
                         {{ member.bio|safe }}
                     </div>
 
-                    {% if member.linkedin_url %}
-                    <div class="mt-8">
+                    <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 flex-wrap">
+                        <div class="inline-flex items-center text-slate-600 font-medium flex-wrap">
+                            <svg class="w-5 h-5 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>E:&nbsp;</span>
+                            {% if member.email_list %}
+                                {% for email in member.email_list %}
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ email }}" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 hover:underline transition-colors cursor-pointer" title="Send email to {{ email }} via Gmail">{{ email }}</a>{% if not forloop.last %}<span class="font-bold text-slate-800">,</span>&nbsp;{% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dummy@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 hover:underline transition-colors cursor-pointer" title="Send email to dummy@gmail.com via Gmail">dummy@gmail.com</a>
+                            {% endif %}
+                        </div>
+
+                        {% if member.linkedin_url %}
                         <a href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer"
                             class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium transition-colors">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -58,8 +63,8 @@
                             </svg>
                             Connect on LinkedIn
                         </a>
+                        {% endif %}
                     </div>
-                    {% endif %}
                 </div>
             </div>
             {% endfor %}

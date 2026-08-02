@@ -1,5 +1,5 @@
 from django.db import models
-from imagekit.models import ImageSpecField
+from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 class Category(models.Model):
@@ -7,6 +7,14 @@ class Category(models.Model):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True, related_name='children')
     icon_svg = models.TextField(blank=True, help_text="SVG code for main categories")
     order = models.IntegerField(default=0)
+    image = ProcessedImageField(
+        upload_to='categories/',
+        processors=[],
+        format='WEBP',
+        options={'quality': 80},
+        blank=True,
+        null=True
+    )
     
     class Meta:
         ordering = ['order', 'name']
